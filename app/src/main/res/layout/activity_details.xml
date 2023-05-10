@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="com.example.viewModel.DetailsViewModel" />
+
+        <variable
+                name="repo"
+                type="com.example.data.model.Repo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <FrameLayout
+                        android:id="@+id/avatarFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                            android:id="@+id/avatar"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="20dp"
+                            app:loadImageUri="@{repo.owner.avatar_url}"
+                            app:srcCompat="@drawable/ic_baseline_account_circle_24"
+                            tools:ignore="ContentDescription" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/name">
+
+                    <TextView
+                            android:id="@+id/stars"
+                            style="@style/AppTheme.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            app:drawableStartCompat="@drawable/ic_baseline_star_border_24"
+                            app:drawableTint="@android:color/darker_gray"
+                            tools:text="@{Integer.toString(repo.stargazers_count)}" />
+
+                    <TextView
+                            android:id="@+id/forks"
+                            style="@style/AppTheme.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            app:drawableStartCompat="@drawable/ic_fork"
+                            app:drawableTint="@android:color/darker_gray"
+                            tools:text="@{Integer.toString(repo.forks_count)}" />
+
+                    <TextView
+                            android:id="@+id/watchers"
+                            style="@style/AppTheme.Description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            app:drawableStartCompat="@drawable/ic_baseline_remove_red_eye_24"
+                            app:drawableTint="@android:color/darker_gray"
+                            tools:text="@{Integer.toString(repo.watchers)}" />
+
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/name"
+                        style="@style/AppTheme.Title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/avatarFrame"
+                        tools:text="@{repo.name}" />
+
+                <TextView
+                        android:id="@+id/username"
+                        style="@style/AppTheme.Description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+                        tools:text="@{repo.owner.login}" />
+
+                <TextView
+                        android:id="@+id/language"
+                        style="@style/AppTheme.Description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        app:drawableStartCompat="@drawable/ic_baseline_code_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/username"
+                        tools:text="@{repo.language}" />
+
+                <TextView
+                        android:id="@+id/description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:maxLines="5"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="@id/name"
+                        app:layout_constraintStart_toStartOf="@+id/username"
+                        app:layout_constraintTop_toBottomOf="@id/language"
+                        tools:text="@{repo.description}" />
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent=".5" />
+
+                <TextView
+                        android:id="@+id/create"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:maxLines="5"
+                        android:text="@string/created_on"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintTop_toBottomOf="@id/description" />
+
+                <TextView
+                        android:id="@+id/createDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:maxLines="5"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/guideline"
+                        app:layout_constraintTop_toTopOf="@id/create"
+                        tools:text="@{viewModel.dateUtils.formatDate(repo.created_at)}" />
+
+                <TextView
+                        android:id="@+id/update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:maxLines="5"
+                        android:text="@string/updated_on"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintTop_toBottomOf="@id/createDate" />
+
+                <TextView
+                        android:id="@+id/updateDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:maxLines="5"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/guideline"
+                        app:layout_constraintTop_toTopOf="@id/update"
+                        tools:text="@{viewModel.dateUtils.formatDate(repo.updated_at)}" />
+
+                <TextView
+                        android:id="@+id/issues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:maxLines="5"
+                        android:text="@string/opened_issues"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toStartOf="@id/guideline"
+                        app:layout_constraintTop_toBottomOf="@id/updateDate" />
+
+                <TextView
+                        android:id="@+id/issuesOpened"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:maxLines="5"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/guideline"
+                        app:layout_constraintTop_toTopOf="@id/issues"
+                        tools:text="@{Integer.toString(repo.open_issues)}" />
+
+
+                <Button
+                        android:id="@+id/btnBrowse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="30dp"
+                        android:onClick="@{()->viewModel.onOpenBrowserClick(repo,context)}"
+                        android:text="@string/open_in_browser"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/issues" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

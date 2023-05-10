@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="contacts">Contacts</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="contactName">Full Name</string>
+    <string name="fullName">%1$s %2$s</string>
+
+
+    <string name="mainInfo">Main Information</string>
+    <string name="subInfo">Sub Information</string>
+
+    <string name="firstName">First Name</string>
+    <string name="LastName">Last Name</string>
+
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="no_results_found">No results found for this query</string>
+    <string name="retry">Retry</string>
+    <string name="results_could_not_be_loaded">Results could not be loaded</string>
+    <string name="created_on">Created on:</string>
+    <string name="updated_on">Last updated on:</string>
+    <string name="opened_issues">Opened issues:</string>
+    <string name="open_in_browser">Open in Browser</string>
+    <string name="repo_details">Repo Details</string>
+    <string name="search">Search</string>
+    <string name="search_query">%s</string>
+    <string name="query">language:%s</string>
+    <string name="type_keyword">Type your keyword here</string>
+</resources>
